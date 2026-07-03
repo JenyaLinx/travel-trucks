@@ -1,0 +1,98 @@
+.card {
+  display: flex;
+  gap: 24px;
+  width: 888px;
+  padding: 24px;
+  border-radius: 20px;
+  background: var(--color-inputs);
+}
+
+.image {
+  width: 292px;
+  height: 188px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.content {
+  flex: 1;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.title,
+.price {
+  color: var(--color-main);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  color: var(--color-main);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.rating,
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rating svg {
+  color: var(--color-rating);
+}
+
+.description {
+  margin-bottom: 24px;
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.badges li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 100px;
+  background: var(--color-badges);
+  color: var(--color-main);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-transform: capitalize;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 166px;
+  height: 56px;
+  border-radius: 200px;
+  background: var(--color-button);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.button:hover {
+  background: var(--color-button-hover);
+}
