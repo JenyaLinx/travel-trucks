@@ -4,46 +4,73 @@
   padding: 48px 64px 80px;
 }
 
-.top {
+.layout {
   display: grid;
   grid-template-columns: 640px 1fr;
   gap: 32px;
-  margin-bottom: 32px;
+  align-items: start;
 }
 
-.gallery {
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.mainImage {
+  width: 640px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.thumbs {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
-.galleryImage {
-  width: 100%;
-  height: 240px;
+.thumbs img {
+  width: 148px;
+  height: 96px;
   object-fit: cover;
   border-radius: 10px;
 }
 
 .infoCard,
-.vehicleCard {
-  padding: 24px;
-  border-radius: 20px;
+.vehicleCard,
+.reviewCard {
   background: var(--color-inputs);
+  border-radius: 20px;
 }
 
-.title {
-  margin-bottom: 8px;
+.infoCard {
+  padding: 24px;
+  min-height: 260px;
+}
+
+.vehicleCard {
+  padding: 24px;
+}
+
+.title,
+.price {
   color: var(--color-main);
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
 }
 
+.title {
+  margin-bottom: 8px;
+}
+
 .meta {
   display: flex;
   gap: 16px;
   margin-bottom: 16px;
-  color: var(--color-main);
   font-size: 16px;
   line-height: 24px;
 }
@@ -61,25 +88,17 @@
 
 .price {
   margin-bottom: 24px;
-  color: var(--color-main);
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 32px;
 }
 
-.description {
+.description,
+.comment {
   color: var(--color-text);
   font-size: 16px;
   line-height: 24px;
 }
 
-.detailsSection {
-  display: grid;
-  grid-template-columns: 640px 1fr;
-  gap: 32px;
-}
-
-.sectionTitle {
+.sectionTitle,
+.reviewsTitle {
   margin-bottom: 24px;
   color: var(--color-main);
   font-size: 20px;
@@ -98,7 +117,6 @@
   padding: 12px 18px;
   border-radius: 100px;
   background: var(--color-badges);
-  color: var(--color-main);
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
@@ -108,19 +126,107 @@
 .table {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .table p {
   display: flex;
   justify-content: space-between;
-  color: var(--color-main);
   font-size: 16px;
   line-height: 24px;
+}
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reviewCard {
+  padding: 24px;
+}
+
+.reviewHeader {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-button);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.reviewHeader h3 {
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.starActive {
+  color: var(--color-rating);
+}
+
+.starInactive {
+  color: var(--color-gray-light);
+}
+
+.formCard {
+  padding: 24px;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 20px;
+  background: var(--color-white);
+}
+
+.formCard h2 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.formCard p {
+  margin-bottom: 24px;
+  color: var(--color-text);
+  font-size: 16px;
+}
+
+.formCard input {
+  width: 100%;
+  height: 56px;
+  margin-bottom: 14px;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  background: var(--color-inputs);
+  outline: none;
+}
+
+.formCard button {
+  width: 100%;
+  height: 56px;
+  margin-top: 10px;
+  border-radius: 200px;
+  background: var(--color-button);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .center {
   padding: 80px 0;
   text-align: center;
-  color: var(--color-text);
 }
