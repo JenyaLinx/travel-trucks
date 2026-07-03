@@ -6,6 +6,7 @@ import CamperCard from "@/components/CamperCard";
 import { getCampers } from "@/services/campers";
 import type { CampersQueryParams } from "@/types/camper";
 import styles from "./CatalogPage.module.css";
+import Loader from "@/components/Loader";
 
 const PER_PAGE = 4;
 
@@ -68,9 +69,9 @@ export default function CatalogPage() {
     setActiveFilters({});
   };
 
-  if (isLoading) {
-    return <main className={styles.center}>Loading tracks...</main>;
-  }
+ if (isLoading) {
+  return <Loader />;
+}
 
   if (isError) {
     return <main className={styles.center}>Something went wrong.</main>;

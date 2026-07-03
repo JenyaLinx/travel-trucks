@@ -16,7 +16,14 @@ export default function CamperCard({ camper }: CamperCardProps) {
 
       <div className={styles.content}>
         <div className={styles.top}>
-          <h2 className={styles.title}>{camper.name}</h2>
+          <a
+  href={detailsUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  className={styles.titleLink}
+>
+  <h2 className={styles.title}>{camper.name}</h2>
+</a>
           <p className={styles.price}>€{camper.price}</p>
         </div>
 

@@ -4,16 +4,21 @@ import { FormEvent, useState } from "react";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { FaStar, FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaStar } from "react-icons/fa";
+
+import CamperGallery from "@/components/CamperGallery";
 import {
   createBookingRequest,
   getCamperById,
   getCamperReviews,
 } from "@/services/campers";
+
 import styles from "./CamperDetailsPage.module.css";
+import Loader from "@/components/Loader";
 
 export default function CamperDetailsPage() {
   const { camperId } = useParams<{ camperId: string }>();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -47,27 +52,28 @@ export default function CamperDetailsPage() {
     }
   };
 
-  if (isLoading) return <main className={styles.center}>Loading camper...</main>;
-  if (isError || !camper) return <main className={styles.center}>Camper not found.</main>;
+ if (isLoading) {
+  return (
+    <Loader
+      title="Loading camper..."
+      text="Please wait while we fetch camper details."
+    />
+  );
+}
 
-  const mainImage = camper.gallery?.[0]?.original || camper.coverImage;
-  const thumbs = camper.gallery?.slice(0, 4) ?? [];
+  if (isError || !camper) {
+    return <main className={styles.center}>Camper not found.</main>;
+  }
 
   return (
     <main className={styles.page}>
       <div className={styles.layout}>
         <div className={styles.leftColumn}>
-          <section>
-            <img src={mainImage} alt={camper.name} className={styles.mainImage} />
-
-            <ul className={styles.thumbs}>
-              {thumbs.map((image) => (
-                <li key={image.id}>
-                  <img src={image.thumb} alt={camper.name} />
-                </li>
-              ))}
-            </ul>
-          </section>
+          <CamperGallery
+            images={camper.gallery}
+            fallbackImage={camper.coverImage}
+            alt={camper.name}
+          />
 
           <section className={styles.reviewsBlock}>
             <h2 className={styles.reviewsTitle}>Reviews</h2>
@@ -76,10 +82,13 @@ export default function CamperDetailsPage() {
               {reviews.map((review) => (
                 <li key={review.id} className={styles.reviewCard}>
                   <div className={styles.reviewHeader}>
-                    <div className={styles.avatar}>{review.reviewer_name[0]}</div>
+                    <div className={styles.avatar}>
+                      {review.reviewer_name[0]}
+                    </div>
 
                     <div>
                       <h3>{review.reviewer_name}</h3>
+
                       <div className={styles.stars}>
                         {Array.from({ length: 5 }).map((_, index) => (
                           <FaStar
@@ -135,12 +144,30 @@ export default function CamperDetailsPage() {
             </ul>
 
             <div className={styles.table}>
-              <p><span>Form</span><span>{camper.form}</span></p>
-              <p><span>Length</span><span>{camper.length}</span></p>
-              <p><span>Width</span><span>{camper.width}</span></p>
-              <p><span>Height</span><span>{camper.height}</span></p>
-              <p><span>Tank</span><span>{camper.tank}</span></p>
-              <p><span>Consumption</span><span>{camper.consumption}</span></p>
+              <p>
+                <span>Form</span>
+                <span>{camper.form}</span>
+              </p>
+              <p>
+                <span>Length</span>
+                <span>{camper.length}</span>
+              </p>
+              <p>
+                <span>Width</span>
+                <span>{camper.width}</span>
+              </p>
+              <p>
+                <span>Height</span>
+                <span>{camper.height}</span>
+              </p>
+              <p>
+                <span>Tank</span>
+                <span>{camper.tank}</span>
+              </p>
+              <p>
+                <span>Consumption</span>
+                <span>{camper.consumption}</span>
+              </p>
             </div>
           </section>
 
