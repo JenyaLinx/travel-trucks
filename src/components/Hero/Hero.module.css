@@ -1,0 +1,82 @@
+.hero {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  height: 696px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(16, 24, 40, 0.45);
+}
+
+.content {
+  position: absolute;
+  top: 230px;
+  left: 64px;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  /* margin-bottom: 16px; */
+
+  color: var(--color-white);
+
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 56px;
+
+  white-space: nowrap;
+}
+
+.subtitle {
+  margin-bottom: 40px;
+
+  color: var(--color-white);
+
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+
+  white-space: nowrap;
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 173px;
+  height: 56px;
+
+  border-radius: 200px;
+
+  background: var(--color-button);
+
+  color: var(--color-white);
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+
+  white-space: nowrap;
+
+  transition: background-color var(--transition);
+}
+
+.button:hover {
+  background: var(--color-button-hover);
+}
