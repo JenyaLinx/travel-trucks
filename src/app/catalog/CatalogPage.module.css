@@ -13,6 +13,9 @@
 .sidebar {
   width: 360px;
   flex-shrink: 0;
+  padding: 24px;
+  border-radius: 20px;
+  background: var(--color-inputs);
 }
 
 .label {
@@ -29,7 +32,7 @@
   padding: 18px;
   border: none;
   border-radius: 12px;
-  background: var(--color-inputs);
+  background: var(--color-white);
   color: var(--color-main);
 }
 
@@ -163,4 +166,11 @@
 .viewAll {
   background: var(--color-button);
   color: var(--color-white);
+}
+
+.emptyImage {
+  width: 488px;
+  height: 263px;
+  object-fit: contain;
+  margin: 0 auto 21px;
 }
