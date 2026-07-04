@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { FaMapMarkerAlt, FaStar } from "react-icons/fa";
 
 import CamperGallery from "@/components/CamperGallery";
+import Loader from "@/components/Loader";
 import {
   createBookingRequest,
   getCamperById,
@@ -14,13 +15,14 @@ import {
 } from "@/services/campers";
 
 import styles from "./CamperDetailsPage.module.css";
-import Loader from "@/components/Loader";
 
 export default function CamperDetailsPage() {
   const { camperId } = useParams<{ camperId: string }>();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const { data: camper, isLoading, isError } = useQuery({
     queryKey: ["camper", camperId],
@@ -35,31 +37,56 @@ export default function CamperDetailsPage() {
   });
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (!name.trim() || !email.trim()) {
-      toast.error("Please fill in all fields");
-      return;
-    }
+  let hasError = false;
+
+  const fullNameRegex =
+    /^[A-Za-zА-Яа-яІіЇїЄєҐґ'-]+\s+[A-Za-zА-Яа-яІіЇїЄєҐґ'-]+$/;
+
+  if (!name.trim()) {
+    setNameError("Please enter your full name.");
+    hasError = true;
+  } else if (!fullNameRegex.test(name.trim())) {
+    setNameError("Please enter your full name.");
+    hasError = true;
+  } else {
+    setNameError("");
+  }
+
+
+if (!email.trim()) {
+  setEmailError("Please enter a valid email");
+  hasError = true;
+} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  setEmailError("Please enter a valid email.");
+  hasError = true;
+} else {
+  setEmailError("");
+}
+
+    if (hasError) return;
 
     try {
       await createBookingRequest(camperId, { name, email });
       toast.success("Booking request sent successfully");
       setName("");
       setEmail("");
+      setNameError("");
+      setEmailError("");
     } catch {
       toast.error("Something went wrong");
     }
   };
 
- if (isLoading) {
-  return (
-    <Loader
-      title="Loading camper..."
-      text="Please wait while we fetch camper details."
-    />
-  );
-}
+  if (isLoading) {
+    return (
+      <Loader
+        title="Loading camper..."
+        text="Please wait while we fetch camper details."
+      />
+    );
+  }
 
   if (isError || !camper) {
     return <main className={styles.center}>Camper not found.</main>;
@@ -171,7 +198,7 @@ export default function CamperDetailsPage() {
             </div>
           </section>
 
-          <form className={styles.formCard} onSubmit={handleSubmit}>
+          <form className={styles.formCard} onSubmit={handleSubmit} noValidate>
             <h2>Book your campervan now</h2>
             <p>Stay connected! We are always ready to help you.</p>
 
@@ -179,15 +206,25 @@ export default function CamperDetailsPage() {
               type="text"
               placeholder="Name*"
               value={name}
-              onChange={(event) => setName(event.target.value)}
+              className={nameError ? styles.inputError : ""}
+              onChange={(event) => {
+                setName(event.target.value);
+                setNameError("");
+              }}
             />
+            {nameError && <p className={styles.errorText}>{nameError}</p>}
 
             <input
               type="email"
               placeholder="Email*"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              className={emailError ? styles.inputError : ""}
+              onChange={(event) => {
+                setEmail(event.target.value);
+                setEmailError("");
+              }}
             />
+            {emailError && <p className={styles.errorText}>{emailError}</p>}
 
             <button type="submit">Send</button>
           </form>

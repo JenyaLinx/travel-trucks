@@ -25,9 +25,40 @@ const emptyFilters: FiltersState = {
   transmission: "",
 };
 
+function normalizeLocation(location: string) {
+  const value = location.trim().toLowerCase();
+
+  const locationsMap: Record<string, string> = {
+    київ: "Kyiv",
+    киев: "Kyiv",
+    kyiv: "Kyiv",
+    kiev: "Kyiv",
+    львів: "Lviv",
+    львов: "Lviv",
+    lviv: "Lviv",
+    одеса: "Odesa",
+    одесса: "Odesa",
+    odesa: "Odesa",
+    odessa: "Odesa",
+    дніпро: "Dnipro",
+    днепр: "Dnipro",
+    dnipro: "Dnipro",
+    харків: "Kharkiv",
+    харьков: "Kharkiv",
+    kharkiv: "Kharkiv",
+  };
+
+  return locationsMap[value] ?? location.trim();
+}
+
 function removeEmptyFilters(filters: FiltersState): CampersQueryParams {
+  const normalizedFilters = {
+    ...filters,
+    location: normalizeLocation(filters.location),
+  };
+
   return Object.fromEntries(
-    Object.entries(filters).filter(([, value]) => value.trim() !== "")
+    Object.entries(normalizedFilters).filter(([, value]) => value.trim() !== "")
   ) as CampersQueryParams;
 }
 
