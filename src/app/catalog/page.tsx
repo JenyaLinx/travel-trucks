@@ -7,6 +7,7 @@ import Loader from "@/components/Loader";
 import { getCampers } from "@/services/campers";
 import type { CampersQueryParams } from "@/types/camper";
 import styles from "./CatalogPage.module.css";
+import Image from "next/image";
 
 const PER_PAGE = 4;
 
@@ -218,9 +219,11 @@ export default function CatalogPage() {
               </>
             ) : (
                 <div className={styles.empty}>
-                  <img
+                 <Image
   src="/images/camper-not-found.svg"
   alt="No campers found"
+  width={488}
+  height={463}
   className={styles.emptyImage}
 />
                 <h2>No campers found</h2>

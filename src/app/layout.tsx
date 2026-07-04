@@ -10,8 +10,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "TravelTrucks",
-  description: "Camper rental service",
+  title: {
+    default: "TravelTrucks",
+    template: "%s | TravelTrucks",
+  },
+  description:
+    "TravelTrucks is a camper rental service where you can find and book camper vans for your next adventure.",
 };
 
 type RootLayoutProps = {

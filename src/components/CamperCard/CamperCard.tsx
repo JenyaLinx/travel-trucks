@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import { FaStar, FaMapMarkerAlt, FaGasPump, FaCogs } from "react-icons/fa";
 import { BsGrid1X2Fill } from "react-icons/bs";
 import type { CamperListItem } from "@/types/camper";
@@ -12,18 +14,24 @@ export default function CamperCard({ camper }: CamperCardProps) {
 
   return (
     <article className={styles.card}>
-      <img src={camper.coverImage} alt={camper.name} className={styles.image} />
+      <Image
+  src={camper.coverImage}
+  alt={camper.name}
+  width={292}
+  height={188}
+  className={styles.image}
+/>
 
       <div className={styles.content}>
         <div className={styles.top}>
-          <a
+          <Link
   href={detailsUrl}
   target="_blank"
-  rel="noopener noreferrer"
   className={styles.titleLink}
 >
   <h2 className={styles.title}>{camper.name}</h2>
-</a>
+</Link>
+
           <p className={styles.price}>€{camper.price}</p>
         </div>
 
@@ -48,24 +56,25 @@ export default function CamperCard({ camper }: CamperCardProps) {
             <FaGasPump />
             {camper.engine}
           </li>
+
           <li>
             <FaCogs />
             {camper.transmission}
           </li>
+
           <li>
             <BsGrid1X2Fill />
             {camper.form}
           </li>
         </ul>
 
-        <a
-          href={detailsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.button}
-        >
-          Show more
-        </a>
+        <Link
+  href={detailsUrl}
+  target="_blank"
+  className={styles.button}
+>
+  Show more
+</Link>
       </div>
     </article>
   );

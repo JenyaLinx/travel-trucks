@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import type { CamperImage } from "@/types/camper";
 import styles from "./CamperGallery.module.css";
 
@@ -22,7 +23,14 @@ export default function CamperGallery({
 
   return (
     <div className={styles.gallery}>
-      <img src={activeImage} alt={alt} className={styles.mainImage} />
+      <Image
+        src={activeImage}
+        alt={alt}
+        width={640}
+height={360}
+        className={styles.mainImage}
+        priority
+      />
 
       <ul className={styles.thumbs}>
         {gallery.slice(0, 4).map((image, index) => (
@@ -34,7 +42,13 @@ export default function CamperGallery({
               }`}
               onClick={() => setActiveIndex(index)}
             >
-              <img src={image.thumb} alt={alt} />
+              <Image
+                src={image.thumb}
+                alt={`${alt} ${index + 1}`}
+                width={196}
+                height={120}
+                className={styles.thumbImage}
+              />
             </button>
           </li>
         ))}
