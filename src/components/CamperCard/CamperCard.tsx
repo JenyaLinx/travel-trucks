@@ -26,7 +26,6 @@ export default function CamperCard({ camper }: CamperCardProps) {
         <div className={styles.top}>
           <Link
   href={detailsUrl}
-  target="_blank"
   className={styles.titleLink}
 >
   <h2 className={styles.title}>{camper.name}</h2>
@@ -70,7 +69,6 @@ export default function CamperCard({ camper }: CamperCardProps) {
 
         <Link
   href={detailsUrl}
-  target="_blank"
   className={styles.button}
 >
   Show more
