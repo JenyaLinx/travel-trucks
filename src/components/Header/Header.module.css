@@ -66,4 +66,9 @@
     transform: none;
     gap: 20px;
   }
+
+  .logo,
+.link {
+  font-size: 14px;
 }
+}   

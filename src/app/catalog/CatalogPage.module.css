@@ -223,6 +223,24 @@
   .viewAll {
     width: 100%;
   }
+  .label,
+.input,
+.filterTitle,
+.radioList label,
+.searchButton,
+.clearButton,
+.loadMore,
+.clearSmall,
+.viewAll,
+.empty p {
+  font-size: 14px;
+}
+
+.groupTitle,
+.empty h2 {
+  font-size: 18px;
+}
+
 }
 
 .locationField {

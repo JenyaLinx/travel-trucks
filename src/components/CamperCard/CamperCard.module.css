@@ -126,7 +126,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@@media (max-width: 480px) {
   .card {
     padding: 16px;
   }
@@ -142,12 +142,25 @@
 
   .title,
   .price {
-    font-size: 22px;
-    line-height: 30px;
+    font-size: 20px;
+    line-height: 28px;
   }
 
-  .meta {
-    flex-direction: column;
-    gap: 6px;
+  .meta,
+  .description {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .badges li {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px 14px;
+  }
+
+  .button {
+    width: 150px;
+    height: 52px;
+    font-size: 14px;
   }
 }
