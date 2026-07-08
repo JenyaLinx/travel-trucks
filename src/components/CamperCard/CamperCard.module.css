@@ -126,7 +126,7 @@
   }
 }
 
-@@media (max-width: 480px) {
+@media (max-width: 480px) {
   .card {
     padding: 16px;
   }
