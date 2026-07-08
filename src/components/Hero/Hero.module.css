@@ -1,10 +1,8 @@
 .hero {
   position: relative;
   width: 100%;
-  height: calc(100vh - 72px);
-  min-height: 520px;
-  max-height: 696px;
-  margin: 0 auto;
+  min-height: calc(100vh - 72px);
+  margin: 0;
   overflow: hidden;
 }
 
@@ -85,10 +83,6 @@
 }
 
 @media (max-width: 768px) {
-  .hero {
-    height: 620px;
-  }
-
   .content {
     top: 190px;
     left: 32px;
@@ -109,11 +103,6 @@
 }
 
 @media (max-width: 480px) {
-  .hero {
-    height: 560px;
-    min-height: 560px;
-  }
-
   .content {
     top: 160px;
     left: 20px;

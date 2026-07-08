@@ -1,13 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import { FormEvent, useState } from "react";
+import { LuMap } from "react-icons/lu";
 import { useInfiniteQuery } from "@tanstack/react-query";
+
 import CamperCard from "@/components/CamperCard";
 import Loader from "@/components/Loader";
 import { getCampers } from "@/services/campers";
 import type { CampersQueryParams } from "@/types/camper";
+
 import styles from "./CatalogPage.module.css";
-import Image from "next/image";
 
 const PER_PAGE = 4;
 
@@ -67,26 +70,26 @@ export default function CatalogPage() {
   const [activeFilters, setActiveFilters] = useState<CampersQueryParams>({});
 
   const {
-  data,
-  isLoading,
-  isError,
-  isFetching,
-  fetchNextPage,
-  hasNextPage,
-  isFetchingNextPage,
-} = useInfiniteQuery({
-  queryKey: ["campers", activeFilters],
-  queryFn: ({ pageParam }) =>
-    getCampers({
-      page: pageParam,
-      perPage: PER_PAGE,
-      ...activeFilters,
-    }),
-  initialPageParam: 1,
-  placeholderData: (previousData) => previousData,
-  getNextPageParam: (lastPage) =>
-    lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
-});
+    data,
+    isLoading,
+    isError,
+    isFetching,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["campers", activeFilters],
+    queryFn: ({ pageParam }) =>
+      getCampers({
+        page: pageParam,
+        perPage: PER_PAGE,
+        ...activeFilters,
+      }),
+    initialPageParam: 1,
+    placeholderData: (previousData) => previousData,
+    getNextPageParam: (lastPage) =>
+      lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
+  });
 
   const campers = data?.pages.flatMap((page) => page.campers) ?? [];
   const showOverlayLoader = isFetching && !isFetchingNextPage && !isLoading;
@@ -121,18 +124,22 @@ export default function CatalogPage() {
                 Location
               </label>
 
-              <input
-                id="location"
-                className={styles.input}
-                placeholder="Kyiv"
-                value={draftFilters.location}
-                onChange={(event) =>
-                  setDraftFilters((prev) => ({
-                    ...prev,
-                    location: event.target.value,
-                  }))
-                }
-              />
+              <div className={styles.locationField}>
+                <LuMap className={styles.locationIcon} />
+
+                <input
+                  id="location"
+                  className={styles.input}
+                  placeholder="Kyiv"
+                  value={draftFilters.location}
+                  onChange={(event) =>
+                    setDraftFilters((prev) => ({
+                      ...prev,
+                      location: event.target.value,
+                    }))
+                  }
+                />
+              </div>
 
               <p className={styles.filterTitle}>Filters</p>
 
@@ -232,8 +239,8 @@ export default function CatalogPage() {
               <>
                 <ul className={styles.list}>
                   {campers.map((camper) => (
-  <CamperCard key={camper.id} camper={camper} />
-))}
+                    <CamperCard key={camper.id} camper={camper} />
+                  ))}
                 </ul>
 
                 {hasNextPage && (
@@ -247,15 +254,17 @@ export default function CatalogPage() {
                 )}
               </>
             ) : (
-                <div className={styles.empty}>
-                 <Image
-  src="/images/camper-not-found.svg"
-  alt="No campers found"
-  width={488}
-  height={463}
-  className={styles.emptyImage}
-/>
+              <div className={styles.empty}>
+                <Image
+                  src="/images/camper-not-found.svg"
+                  alt="No campers found"
+                  width={488}
+                  height={463}
+                  className={styles.emptyImage}
+                />
+
                 <h2>No campers found</h2>
+
                 <p>
                   We couldnt find any campers that match your filters.
                   <br />
@@ -265,12 +274,17 @@ export default function CatalogPage() {
                 <div className={styles.emptyActions}>
                   <button
                     className={styles.clearSmall}
+                    type="button"
                     onClick={handleClearFilters}
                   >
                     × Clear filters
                   </button>
 
-                  <button className={styles.viewAll} onClick={handleClearFilters}>
+                  <button
+                    className={styles.viewAll}
+                    type="button"
+                    onClick={handleClearFilters}
+                  >
                     View all campers
                   </button>
                 </div>

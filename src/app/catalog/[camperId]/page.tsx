@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { FaExclamationCircle, FaMapMarkerAlt, FaStar } from "react-icons/fa";
+import { LuMap } from "react-icons/lu";
 
 import CamperGallery from "@/components/CamperGallery";
 import Loader from "@/components/Loader";

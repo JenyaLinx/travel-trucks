@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   },
   description:
     "TravelTrucks is a camper rental service where you can find and book camper vans for your next adventure.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 type RootLayoutProps = {

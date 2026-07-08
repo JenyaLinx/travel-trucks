@@ -18,7 +18,7 @@ export default function CamperCard({ camper }: CamperCardProps) {
         src={camper.coverImage}
         alt={camper.name}
         width={292}
-        height={188}
+        height={219}
         className={styles.image}
       />
 
