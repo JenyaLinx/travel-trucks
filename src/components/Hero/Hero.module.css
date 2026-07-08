@@ -20,8 +20,8 @@
 
 .content {
   position: absolute;
-  top: 165px;
-  left: 48px;
+  top: 195px;
+  left: 64px;
   z-index: 2;
 
   display: flex;
