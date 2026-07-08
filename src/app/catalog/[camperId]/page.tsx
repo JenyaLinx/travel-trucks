@@ -219,7 +219,7 @@ export default function CamperDetailsPage() {
     {nameError && <FaExclamationCircle className={styles.errorIcon} />}
   </div>
 
-  {nameError && <p className={styles.errorText}>Please enter your name.</p>}
+  {nameError && <p className={styles.errorText}>Please enter your full name.</p>}
 
   <div
     className={`${styles.inputWrapper} ${
