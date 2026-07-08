@@ -20,9 +20,10 @@
 
 .content {
   position: absolute;
-  top: 230px;
   left: 64px;
+  bottom: 72px;
   z-index: 2;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -65,10 +66,14 @@
   background: var(--color-button-hover);
 }
 
+/* ========================= */
+/* Laptop */
+/* ========================= */
+
 @media (max-width: 1024px) {
   .content {
-    top: 190px;
     left: 48px;
+    bottom: 56px;
   }
 
   .title {
@@ -82,11 +87,15 @@
   }
 }
 
+/* ========================= */
+/* Tablet */
+/* ========================= */
+
 @media (max-width: 768px) {
   .content {
-    top: 190px;
     left: 32px;
     right: 32px;
+    bottom: 48px;
   }
 
   .title {
@@ -102,11 +111,15 @@
   }
 }
 
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
 @media (max-width: 480px) {
   .content {
-    top: 160px;
     left: 20px;
     right: 20px;
+    bottom: 32px;
   }
 
   .title {
