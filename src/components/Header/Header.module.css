@@ -8,7 +8,6 @@
 .inner {
   position: relative;
   width: 100%;
-  max-width: 1440px;
   height: 72px;
   margin: 0 auto;
   padding: 0 64px;
@@ -48,4 +47,23 @@
 
 .active {
   color: #7c988c;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    padding: 0 16px;
+    justify-content: space-between;
+  }
+
+  .nav {
+    position: static;
+    transform: none;
+    gap: 20px;
+  }
 }
