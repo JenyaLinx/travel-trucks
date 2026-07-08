@@ -46,7 +46,7 @@ export default function CamperDetailsPage() {
       /^[A-Za-zА-Яа-яІіЇїЄєҐґ'-]+\s+[A-Za-zА-Яа-яІіЇїЄєҐґ'-]+$/;
 
     if (!name.trim() || !fullNameRegex.test(name.trim())) {
-      setNameError("Please enter your name.");
+      setNameError("Please enter your full name.");
       hasError = true;
     } else {
       setNameError("");
