@@ -20,13 +20,15 @@
 
 .content {
   position: absolute;
-  left: 64px;
-  bottom: 72px;
+  top: 165px;
+  left: 48px;
   z-index: 2;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  max-width: 570px;
 }
 
 .title {
@@ -34,31 +36,35 @@
   font-size: 48px;
   font-weight: 600;
   line-height: 56px;
-  white-space: nowrap;
 }
 
 .subtitle {
   margin-bottom: 40px;
+
   color: var(--color-white);
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
-  white-space: nowrap;
 }
 
 .button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+
   width: 173px;
   height: 56px;
+
   border-radius: 200px;
+
   background: var(--color-button);
+
   color: var(--color-white);
+
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-  white-space: nowrap;
+
   transition: background-color var(--transition);
 }
 
@@ -72,8 +78,8 @@
 
 @media (max-width: 1024px) {
   .content {
-    left: 48px;
-    bottom: 56px;
+    top: 150px;
+    left: 40px;
   }
 
   .title {
@@ -93,21 +99,20 @@
 
 @media (max-width: 768px) {
   .content {
+    top: 150px;
     left: 32px;
     right: 32px;
-    bottom: 48px;
+    max-width: none;
   }
 
   .title {
     font-size: 38px;
     line-height: 46px;
-    white-space: normal;
   }
 
   .subtitle {
     font-size: 20px;
     line-height: 28px;
-    white-space: normal;
   }
 }
 
@@ -117,9 +122,9 @@
 
 @media (max-width: 480px) {
   .content {
+    top: 120px;
     left: 20px;
     right: 20px;
-    bottom: 32px;
   }
 
   .title {
