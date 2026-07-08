@@ -122,19 +122,19 @@
 
 @media (max-width: 480px) {
   .content {
-    top: 220px;
-    left: 20px;
-    right: 20px;
+    top: 250px;
+    left: 22px;
+    right: 22px;
   }
 
   .title {
-    font-size: 32px;
+    font-size: 34px;
     line-height: 38px;
   }
 
   .subtitle {
     margin-bottom: 32px;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 26px;
   }
 
