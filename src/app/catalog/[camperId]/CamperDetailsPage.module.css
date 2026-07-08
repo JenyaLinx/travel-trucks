@@ -1,4 +1,5 @@
 .page {
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   padding: 48px 64px 80px;
@@ -6,7 +7,7 @@
 
 .layout {
   display: grid;
-  grid-template-columns: 640px 1fr;
+  grid-template-columns: minmax(0, 640px) minmax(0, 1fr);
   gap: 32px;
   align-items: start;
 }
@@ -18,27 +19,6 @@
   gap: 32px;
 }
 
-.mainImage {
-  width: 640px;
-  height: 360px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 24px;
-}
-
-.thumbs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.thumbs img {
-  width: 148px;
-  height: 96px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
 .infoCard,
 .vehicleCard,
 .reviewCard {
@@ -46,13 +26,15 @@
   border-radius: 20px;
 }
 
-.infoCard {
+.infoCard,
+.vehicleCard,
+.reviewCard,
+.formCard {
   padding: 24px;
-  min-height: 260px;
 }
 
-.vehicleCard {
-  padding: 24px;
+.infoCard {
+  min-height: 260px;
 }
 
 .title,
@@ -132,6 +114,7 @@
 .table p {
   display: flex;
   justify-content: space-between;
+  gap: 24px;
   font-size: 16px;
   line-height: 24px;
 }
@@ -140,10 +123,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-.reviewCard {
-  padding: 24px;
 }
 
 .reviewHeader {
@@ -156,6 +135,7 @@
 .avatar {
   width: 48px;
   height: 48px;
+  flex-shrink: 0;
   border-radius: 50%;
   background: var(--color-white);
   color: var(--color-button);
@@ -186,7 +166,6 @@
 }
 
 .formCard {
-  padding: 24px 24px;
   border: 1px solid var(--color-gray-light);
   border-radius: 20px;
   background: var(--color-white);
@@ -280,7 +259,80 @@
 .formCard button:hover {
   background: var(--color-button-hover);
 }
+
 .center {
   padding: 80px 0;
   text-align: center;
+}
+
+/* Laptop */
+@media (max-width: 1200px) {
+  .page {
+    padding: 40px;
+  }
+
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+    gap: 24px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .page {
+    padding: 32px;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .rightColumn {
+    gap: 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .page {
+    padding: 20px 16px 40px;
+  }
+
+  .leftColumn,
+  .rightColumn {
+    gap: 24px;
+  }
+
+  .infoCard,
+  .vehicleCard,
+  .reviewCard,
+  .formCard {
+    padding: 18px;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .title,
+  .price {
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  .badges li {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .table p {
+    gap: 12px;
+    font-size: 15px;
+  }
+
+  .formCard input,
+  .formCard button {
+    height: 56px;
+  }
 }
