@@ -232,10 +232,8 @@ export default function CatalogPage() {
               <>
                 <ul className={styles.list}>
                   {campers.map((camper) => (
-                    <li key={camper.id}>
-                      <CamperCard camper={camper} />
-                    </li>
-                  ))}
+  <CamperCard key={camper.id} camper={camper} />
+))}
                 </ul>
 
                 {hasNextPage && (

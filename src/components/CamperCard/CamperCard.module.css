@@ -12,15 +12,19 @@
   height: 188px;
   object-fit: cover;
   border-radius: 10px;
+  display: block;
+  flex-shrink: 0;
 }
 
 .content {
   flex: 1;
+  min-width: 0;
 }
 
 .top {
   display: flex;
   justify-content: space-between;
+  gap: 24px;
   margin-bottom: 8px;
 }
 
@@ -30,6 +34,10 @@
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
+}
+
+.title {
+  transition: color var(--transition);
 }
 
 .meta {

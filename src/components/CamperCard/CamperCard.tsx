@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaStar, FaMapMarkerAlt, FaGasPump, FaCogs } from "react-icons/fa";
+import { FaCogs, FaGasPump, FaMapMarkerAlt, FaStar } from "react-icons/fa";
 import { BsGrid1X2Fill } from "react-icons/bs";
 import type { CamperListItem } from "@/types/camper";
 import styles from "./CamperCard.module.css";
@@ -13,23 +13,20 @@ export default function CamperCard({ camper }: CamperCardProps) {
   const detailsUrl = `/catalog/${camper.id}`;
 
   return (
-    <article className={styles.card}>
+    <li className={styles.card}>
       <Image
-  src={camper.coverImage}
-  alt={camper.name}
-  width={292}
-  height={188}
-  className={styles.image}
-/>
+        src={camper.coverImage}
+        alt={camper.name}
+        width={292}
+        height={188}
+        className={styles.image}
+      />
 
       <div className={styles.content}>
         <div className={styles.top}>
-          <Link
-  href={detailsUrl}
-  className={styles.titleLink}
->
-  <h2 className={styles.title}>{camper.name}</h2>
-</Link>
+          <Link href={detailsUrl} className={styles.titleLink}>
+            <h2 className={styles.title}>{camper.name}</h2>
+          </Link>
 
           <p className={styles.price}>€{camper.price}</p>
         </div>
@@ -67,13 +64,10 @@ export default function CamperCard({ camper }: CamperCardProps) {
           </li>
         </ul>
 
-        <Link
-  href={detailsUrl}
-  className={styles.button}
->
-  Show more
-</Link>
+        <Link href={detailsUrl} className={styles.button}>
+          Show more
+        </Link>
       </div>
-    </article>
+    </li>
   );
 }

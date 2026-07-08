@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { FaMapMarkerAlt, FaStar } from "react-icons/fa";
+import { FaExclamationCircle, FaMapMarkerAlt, FaStar } from "react-icons/fa";
 
 import CamperGallery from "@/components/CamperGallery";
 import Loader from "@/components/Loader";
@@ -37,33 +37,26 @@ export default function CamperDetailsPage() {
   });
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  let hasError = false;
+    let hasError = false;
 
-  const fullNameRegex =
-    /^[A-Za-zА-Яа-яІіЇїЄєҐґ'-]+\s+[A-Za-zА-Яа-яІіЇїЄєҐґ'-]+$/;
+    const fullNameRegex =
+      /^[A-Za-zА-Яа-яІіЇїЄєҐґ'-]+\s+[A-Za-zА-Яа-яІіЇїЄєҐґ'-]+$/;
 
-  if (!name.trim()) {
-    setNameError("Please enter your full name.");
-    hasError = true;
-  } else if (!fullNameRegex.test(name.trim())) {
-    setNameError("Please enter your full name.");
-    hasError = true;
-  } else {
-    setNameError("");
-  }
+    if (!name.trim() || !fullNameRegex.test(name.trim())) {
+      setNameError("Please enter your name.");
+      hasError = true;
+    } else {
+      setNameError("");
+    }
 
-
-if (!email.trim()) {
-  setEmailError("Please enter a valid email");
-  hasError = true;
-} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-  setEmailError("Please enter a valid email.");
-  hasError = true;
-} else {
-  setEmailError("");
-}
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError("Please enter your email.");
+      hasError = true;
+    } else {
+      setEmailError("");
+    }
 
     if (hasError) return;
 
@@ -199,35 +192,59 @@ if (!email.trim()) {
           </section>
 
           <form className={styles.formCard} onSubmit={handleSubmit} noValidate>
-            <h2>Book your campervan now</h2>
-            <p>Stay connected! We are always ready to help you.</p>
+  <h2>Book your campervan now</h2>
+ <p className={styles.formDescription}>
+  Stay connected! We are always ready to help you.
+</p>
 
-            <input
-              type="text"
-              placeholder="Name*"
-              value={name}
-              className={nameError ? styles.inputError : ""}
-              onChange={(event) => {
-                setName(event.target.value);
-                setNameError("");
-              }}
-            />
-            {nameError && <p className={styles.errorText}>{nameError}</p>}
+  <div
+    className={`${styles.inputWrapper} ${
+      nameError ? styles.hasError : ""
+    }`}
+  >
+    {nameError && <span className={styles.inputLabel}>Name*</span>}
 
-            <input
-              type="email"
-              placeholder="Email*"
-              value={email}
-              className={emailError ? styles.inputError : ""}
-              onChange={(event) => {
-                setEmail(event.target.value);
-                setEmailError("");
-              }}
-            />
-            {emailError && <p className={styles.errorText}>{emailError}</p>}
+    <input
+      type="text"
+      placeholder="Name*"
+      value={name}
+      className={nameError ? styles.inputError : ""}
+      onChange={(event) => {
+        setName(event.target.value);
+        setNameError("");
+      }}
+    />
 
-            <button type="submit">Send</button>
-          </form>
+    {nameError && <FaExclamationCircle className={styles.errorIcon} />}
+  </div>
+
+  {nameError && <p className={styles.errorText}>Please enter your name.</p>}
+
+  <div
+    className={`${styles.inputWrapper} ${
+      emailError ? styles.hasError : ""
+    }`}
+  >
+    {emailError && <span className={styles.inputLabel}>Email*</span>}
+
+    <input
+      type="email"
+      placeholder="Email*"
+      value={email}
+      className={emailError ? styles.inputError : ""}
+      onChange={(event) => {
+        setEmail(event.target.value);
+        setEmailError("");
+      }}
+    />
+
+    {emailError && <FaExclamationCircle className={styles.errorIcon} />}
+  </div>
+
+  {emailError && <p className={styles.errorText}>Please enter your email.</p>}
+
+  <button type="submit">Send</button>
+</form>
         </div>
       </div>
     </main>
